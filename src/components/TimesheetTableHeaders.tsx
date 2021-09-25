@@ -7,13 +7,12 @@ const TimesheetTableHeaders: FC<TimesheetTableHeadersProps> = ({
   return (
     <Table.Header>
       <Table.Row>
-        <Table.HeaderCell>{`${weekDays[0]}`}</Table.HeaderCell>
-        <Table.HeaderCell>{`${weekDays[1]}`}</Table.HeaderCell>
-        <Table.HeaderCell>{`${weekDays[2]}`}</Table.HeaderCell>
-        <Table.HeaderCell>{`${weekDays[3]}`}</Table.HeaderCell>
-        <Table.HeaderCell>{`${weekDays[4]}`}</Table.HeaderCell>
-        <Table.HeaderCell>{`${weekDays[5]}`}</Table.HeaderCell>
-        <Table.HeaderCell>{`${weekDays[6]}`}</Table.HeaderCell>
+        {weekDays.map((day) => (
+          <Table.HeaderCell>{`${day.toString().substring(0, 3)}, ${day
+            .toString()
+            .substring(4, 10)}`}</Table.HeaderCell>
+        ))}
+
         <Table.HeaderCell>Delete</Table.HeaderCell>
       </Table.Row>
     </Table.Header>
