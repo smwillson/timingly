@@ -1,3 +1,4 @@
+import format from 'date-fns/format';
 import { FC } from 'react';
 import { Table } from 'semantic-ui-react';
 
@@ -8,9 +9,7 @@ const TimesheetTableHeaders: FC<TimesheetTableHeadersProps> = ({
     <Table.Header>
       <Table.Row>
         {weekDays.map((day) => (
-          <Table.HeaderCell>{`${day.toString().substring(0, 3)}, ${day
-            .toString()
-            .substring(4, 10)}`}</Table.HeaderCell>
+          <Table.HeaderCell>{`${format(day, 'EE, MMM dd')}`}</Table.HeaderCell>
         ))}
 
         <Table.HeaderCell>Delete</Table.HeaderCell>
