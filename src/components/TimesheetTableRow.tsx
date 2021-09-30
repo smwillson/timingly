@@ -6,6 +6,9 @@ import { Table } from 'semantic-ui-react';
 const TimesheetTableRow: FC<TimesheetTableRowProps> = ({ week }) => {
   return (
     <Table.Row>
+      {/* {week.map((day) => {
+        <Table.Cell>0</Table.Cell>;
+      })} */}
       <Table.Cell>0</Table.Cell>
       <Table.Cell>0</Table.Cell>
       <Table.Cell>0</Table.Cell>

@@ -11,7 +11,6 @@ const TimesheetTableHeaders: FC<TimesheetTableHeadersProps> = ({
         {weekDays.map((day) => (
           <Table.HeaderCell>{`${format(day, 'EE, MMM dd')}`}</Table.HeaderCell>
         ))}
-
         <Table.HeaderCell>Delete</Table.HeaderCell>
       </Table.Row>
     </Table.Header>

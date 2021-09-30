@@ -1,6 +1,7 @@
 import { addDays, startOfWeek } from 'date-fns';
 import { useEffect, useState } from 'react';
 import { Tab } from 'semantic-ui-react';
+import ProjectContainer from './ProjectContainer';
 import TimesheetTable from './TimesheetTable';
 
 const TabExampleVerticalTabular = () => {
@@ -14,14 +15,23 @@ const TabExampleVerticalTabular = () => {
         </Tab.Pane>
       ),
     },
-    { menuItem: 'PROJECTS', render: () => <Tab.Pane>Tab 2 Content</Tab.Pane> },
-    { menuItem: 'REPORTS', render: () => <Tab.Pane>Tab 3 Content</Tab.Pane> },
+    {
+      menuItem: 'PROJECTS',
+      render: () => (
+        <Tab.Pane>
+          <ProjectContainer />
+        </Tab.Pane>
+      ),
+    },
+    { menuItem: 'REPORTS', render: () => <Tab.Pane>Display reports</Tab.Pane> },
   ];
   const [daysOfWeek, setDaysOfWeek] = useState<Date[]>([]);
+
   useEffect(() => {
     setDaysOfWeek(getCurrentWeekDays());
     console.log(daysOfWeek);
   }, []);
+
   return (
     <Tab menu={{ fluid: true, vertical: true, tabular: true }} panes={panes} />
   );
