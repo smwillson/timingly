@@ -4,6 +4,7 @@ import { Tab } from 'semantic-ui-react';
 import ProjectContainer from './ProjectContainer';
 import TimesheetTable from './TimesheetTable';
 
+//use atom here to get all the data for the week??
 const TabExampleVerticalTabular = () => {
   const panes = [
     {
