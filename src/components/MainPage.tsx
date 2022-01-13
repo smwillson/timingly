@@ -1,6 +1,10 @@
 import { addDays, startOfWeek } from 'date-fns';
+import { cons } from 'fp-ts/lib/NonEmptyArray';
+import { useAtom } from 'jotai';
 import { useEffect, useState } from 'react';
 import { Tab } from 'semantic-ui-react';
+import { timesheetsAtom } from '../atoms/timesheetAtom';
+import { getTimeSheets } from '../requests/event';
 import ProjectContainer from './ProjectContainer';
 import TimesheetTable from './TimesheetTable';
 
@@ -28,9 +32,16 @@ const TabExampleVerticalTabular = () => {
   ];
   const [daysOfWeek, setDaysOfWeek] = useState<Date[]>([]);
 
+  const [timesheets, setTimesheets] = useAtom(timesheetsAtom);
+  // const [timesheets, setTimesheets] = useState<Timesheet[] | []>([]);
+
   useEffect(() => {
     setDaysOfWeek(getCurrentWeekDays());
-    console.log(daysOfWeek);
+    getTimeSheets().then((sheets) => {
+      setTimesheets(sheets.timesheets);
+
+      // console.log(sheets);
+    });
   }, []);
 
   return (
