@@ -1,10 +1,9 @@
-import { addDays, startOfWeek } from 'date-fns';
-import { cons } from 'fp-ts/lib/NonEmptyArray';
 import { useAtom } from 'jotai';
 import { useEffect, useState } from 'react';
 import { Tab } from 'semantic-ui-react';
 import { timesheetsAtom } from '../atoms/timesheetAtom';
 import { getTimeSheets } from '../requests/event';
+import { getCurrentWeekDays } from '../utils/misc';
 import ProjectContainer from './ProjectContainer';
 import TimesheetTable from './TimesheetTable';
 
@@ -37,26 +36,14 @@ const TabExampleVerticalTabular = () => {
 
   useEffect(() => {
     setDaysOfWeek(getCurrentWeekDays());
+    console.log('hello¡¡¡');
     getTimeSheets().then((sheets) => {
-      setTimesheets(sheets.timesheets);
-
-      // console.log(sheets);
+      setTimesheets(sheets.timesheetsForDate);
     });
-  }, []);
+  }, [setTimesheets]);
 
   return (
     <Tab menu={{ fluid: true, vertical: true, tabular: true }} panes={panes} />
   );
 };
 export default TabExampleVerticalTabular;
-
-const getCurrentWeekDays = () => {
-  const today = new Date();
-  const firstDay = startOfWeek(today, { weekStartsOn: 0 });
-  const week = [firstDay];
-
-  for (let index = 0; index < 6; index++) {
-    week.push(addDays(week[index], 1));
-  }
-  return week;
-};

@@ -10,22 +10,25 @@ const TimesheetTableRow: FC<TimesheetTableRowProps> = ({ week }) => {
   const [timesheets] = useAtom(timesheetsAtom);
   // console.log('timesheets');
   // console.log(timesheets);
+
   const time = createTimeTable(timesheets);
-  Array.from(time.values()).map((val) =>
-    Array.isArray(val) ? console.log(val[0].hours) : console.log(val)
-  );
+  time &&
+    Array.from(time.values()).map((val) =>
+      Array.isArray(val) ? console.log(val[0].hours) : console.log(val)
+    );
   return (
     <Table.Row>
       {/* {timesheets.map((sheet) => (
         <Table.Cell>{sheet.hours}</Table.Cell>
       ))} */}
-      {Array.from(time.values()).map((val) =>
-        Array.isArray(val) ? (
-          <Table.Cell>{val[0].hours}</Table.Cell>
-        ) : (
-          <Table.Cell>{val}</Table.Cell>
-        )
-      )}
+      {time &&
+        Array.from(time.values()).map((val) =>
+          Array.isArray(val) ? (
+            <Table.Cell>{val[0].hours}</Table.Cell>
+          ) : (
+            <Table.Cell>{val}</Table.Cell>
+          )
+        )}
       <Table.Cell>
         <FontAwesomeIcon icon={faTrashAlt} />
       </Table.Cell>
