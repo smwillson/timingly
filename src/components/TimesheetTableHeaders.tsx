@@ -1,4 +1,3 @@
-import { startOfWeek } from 'date-fns';
 import format from 'date-fns/format';
 import { FC } from 'react';
 import { Table } from 'semantic-ui-react';

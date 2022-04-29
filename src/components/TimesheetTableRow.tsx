@@ -4,18 +4,19 @@ import { useAtom } from 'jotai';
 import { FC } from 'react';
 import { Table } from 'semantic-ui-react';
 import { timesheetsAtom } from '../atoms/timesheetAtom';
-import { createTimeTable } from '../utils/misc';
 
 const TimesheetTableRow: FC<TimesheetTableRowProps> = ({ week }) => {
   const [timesheets] = useAtom(timesheetsAtom);
   // console.log('timesheets');
   // console.log(timesheets);
 
+
   const time = createTimeTable(timesheets);
   time &&
     Array.from(time.values()).map((val) =>
       Array.isArray(val) ? console.log(val[0].hours) : console.log(val)
     );
+
   return (
     <Table.Row>
       {/* {timesheets.map((sheet) => (
@@ -43,4 +44,7 @@ export default TimesheetTableRow;
 
 interface TimesheetTableRowProps {
   week: number[];
+}
+function createTimeTable(timesheets: any) {
+  throw new Error('Function not implemented.');
 }
